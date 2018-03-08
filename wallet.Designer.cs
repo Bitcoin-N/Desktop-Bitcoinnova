@@ -905,7 +905,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(34, 15);
             this.label7.TabIndex = 9;
-            this.label7.Text = "TRTL";
+            this.label7.Text = "BTN";
             // 
             // panel27
             // 
@@ -972,7 +972,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(34, 15);
             this.label6.TabIndex = 8;
-            this.label6.Text = "TRTL";
+            this.label6.Text = "BTN";
             // 
             // panel29
             // 

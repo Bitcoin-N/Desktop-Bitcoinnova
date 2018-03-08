@@ -583,7 +583,7 @@ namespace TurtleWallet
             int amount = 0;
             int fee = 10;
 
-            if (!sendAddr.StartsWith("TRTL") || sendAddr.Length != 99)
+            if (!sendAddr.StartsWith("BTN") || sendAddr.Length != 99)
             {
                 MessageBox.Show("The address you are sending to is invalid, " +
                                 "please check it. It should start with BTN and " +
