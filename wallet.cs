@@ -19,7 +19,7 @@ namespace TurtleWallet
         public static int watchdogMaxTry = 3;
         public static int currentTimeout = 0;
         public static int currentTry = 0;
-        public static int staticFee = 10;
+        public static int staticFee = 100000;
         public static Label _selectedTab;
         public static List<string> cachedTrx = new List<string>();
         public static List<ListViewItem> firstRunTrx = new List<ListViewItem>();
@@ -85,6 +85,8 @@ namespace TurtleWallet
             windowLogger = new WindowLogger();
             walletTabControl.SelectedIndex = 0;
             feeComboBox.SelectedIndex = 0;
+
+            label13.Text = String.Format("{0} BALANCE:", System.IO.Path.GetFileNameWithoutExtension(Properties.Settings.Default.walletPath));
         }
 
         private void Wallet_Load(object sender, EventArgs e)
@@ -290,12 +292,12 @@ namespace TurtleWallet
 
                         if((long)transaction["unlockTime"] == 0 || (long)transaction["unlockTime"] <= (long)status["blockCount"] - 40)
                         {
-                            var confirmItem = new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "   ✔", System.Drawing.Color.Green, System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29))))), new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0))));
+                            var confirmItem = new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "       ✔", System.Drawing.Color.Green, System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29))))), new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0))));
                             subitems.Add(confirmItem);
                         }
                         else
                         {
-                            var confirmItem = new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "   ✘", System.Drawing.Color.DarkRed, System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29))))), new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0))));
+                            var confirmItem = new System.Windows.Forms.ListViewItem.ListViewSubItem(null, "       ✘", System.Drawing.Color.DarkRed, System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29))))), new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0))));
                             subitems.Add(confirmItem);
                         }
 
@@ -581,13 +583,13 @@ namespace TurtleWallet
             string sendAddr = recipientAddressText.Text;
             string paymentID = paymentIdText.Text;
             int amount = 0;
-            int fee = 10;
-
-            if (!sendAddr.StartsWith("BTN") || sendAddr.Length != 99)
+            int fee = 100000;  // 10 cambio
+ 
+            if (!sendAddr.StartsWith("E") || sendAddr.Length != 95)  //95 BTN
             {
                 MessageBox.Show("The address you are sending to is invalid, " +
                                 "please check it. It should start with BTN and " +
-                                "be 99 characters long.", "bitcoin nova Wallet", 
+                                "be 95 characters long.", "bitcoin nova Wallet", 
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -599,7 +601,7 @@ namespace TurtleWallet
 
             try
             {
-                amount = (int)(sendAmountText.Value * 100);
+                amount = (int)(sendAmountText.Value * 1000000);  //decimales de envio BTN  1000000
                 if(amount <= 0)
                 {
                     MessageBox.Show("Invalid send amount.", "bitcoin nova Wallet", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -614,27 +616,27 @@ namespace TurtleWallet
 
 
             if (feeComboBox.SelectedIndex == 0)
-                fee = Percent(amount, 0.005);
-            else if (feeComboBox.SelectedIndex == 1)
                 fee = Percent(amount, 0.01);
+            else if (feeComboBox.SelectedIndex == 1)
+                fee = Percent(amount, 0.015);
             else if (feeComboBox.SelectedIndex == 2)
                 fee = Percent(amount, 0.025);
             else if (feeComboBox.SelectedIndex == 3)
                 fee = Percent(amount, 0.05);
 
-            if (fee < 10)
-                fee = 10;
+            if (fee < 10000)  // 10 cambio
+                fee = 10000;  // 10 Cambio
 
             int mixins = (int)mixinNumeric.Value;
 
             List<int> TransactionAmounts = new List<int>();
-            if(amount > 50000000)
+            if(amount > 500000000) // 50000000 cambio 50btn    
             {
-                int wholeTrxs = (int)Math.Floor(amount / (double)50000000);
-                int diff = amount - (wholeTrxs * 50000000);
+                int wholeTrxs = (int)Math.Floor(amount / (double)50000000000000); // 50000000 cambio (50btn) // 50000000000000 (100.000btn)
+                int diff = amount - (wholeTrxs * 500000000); // 50000000 cambio
                 for (int i = 0; i < wholeTrxs; i++)
                 {
-                    TransactionAmounts.Add(50000000);
+                    TransactionAmounts.Add(500000000); // 50000000 cambio
                 }
                 TransactionAmounts.Add(diff);
             }
@@ -671,7 +673,7 @@ namespace TurtleWallet
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Error occured on send:" + Environment.NewLine + ex.Message, "TurleCoin Wallet", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error occured on send:" + Environment.NewLine + ex.Message, "bitcoin nova Wallet", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 windowLogger.Log(LogTextbox, "Error occured on send:" + Environment.NewLine + ex.Message);
             }
 
@@ -749,7 +751,7 @@ namespace TurtleWallet
 
         private void SendAmountText_ValueChanged(object sender, EventArgs e)
         {
-            if(sendAmountText.Value <= 100000)
+            if(sendAmountText.Value <= 100000) //100000
             {
                 mixinNumeric.Value = 3;
                 feeComboBox.SelectedIndex = 0;
@@ -758,7 +760,7 @@ namespace TurtleWallet
                 ToolTip disabledTooltip = new ToolTip();
                 disabledTooltip.SetToolTip(sendButton, "Send BTN!");
             }
-            else if(sendAmountText.Value <= 500000)
+            else if(sendAmountText.Value <= 500000) // 500000
             {
                 mixinNumeric.Value = 5;
                 feeComboBox.SelectedIndex = 1;
@@ -767,7 +769,7 @@ namespace TurtleWallet
                 ToolTip disabledTooltip = new ToolTip();
                 disabledTooltip.SetToolTip(sendButton, "Send BTN!");
             }
-            else if (sendAmountText.Value <= 1500000)
+            else if (sendAmountText.Value <= 1500000) // 1500000
             {
                 mixinNumeric.Value = 8;
                 feeComboBox.SelectedIndex = 2;
@@ -776,7 +778,7 @@ namespace TurtleWallet
                 ToolTip disabledTooltip = new ToolTip();
                 disabledTooltip.SetToolTip(sendButton, "Send BTN!");
             }
-            else if (sendAmountText.Value >= 1500001)
+            else if (sendAmountText.Value >= 1500001) // 1500001
             {
                 mixinNumeric.Value = 13;
                 feeComboBox.SelectedIndex = 3;
@@ -796,7 +798,7 @@ namespace TurtleWallet
 
         public static int Percent(int number, double percent)
         {
-            return (int)Math.Round(((double)number * percent) / 1000000);
+            return (int)Math.Round(((double)number * percent) / 1000000); //1000000
         }
 
         private void BackupSubmitbutton_Click(object sender, EventArgs e)
