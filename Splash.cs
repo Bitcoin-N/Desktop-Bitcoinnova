@@ -43,7 +43,7 @@ namespace TurtleWallet
             WalletPath = _wallet;
             WalletPassword = _password;
             versionLabel.Text = "v" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-            this.Text = "bitcoin nova Wallet";
+            this.Text = "Bitcoin Nova Wallet";
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -226,6 +226,11 @@ namespace TurtleWallet
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

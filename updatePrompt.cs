@@ -19,7 +19,7 @@ namespace TurtleWallet
         public UpdatePrompt()
         {
             InitializeComponent();
-            this.Text = "bitcoin nova Wallet";
+            this.Text = "Bitcoin Nova Wallet";
         }
 
         private void UpdatePrompt_Load(object sender, EventArgs e)

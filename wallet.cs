@@ -357,7 +357,7 @@ namespace TurtleWallet
                     column.Width = -2;
                 }
             }
-            string titleUpdate = "bitcoin nova Wallet - Network Sync [" + status["blockCount"].ToString() + " / " + status["knownBlockCount"].ToString() + "] | Peers: " + status["peerCount"].ToString() + " | Updated: " + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss tt");
+            string titleUpdate = "Bitcoin Nova Wallet - Network Sync [" + status["blockCount"].ToString() + " / " + status["knownBlockCount"].ToString() + "] | Peers: " + status["peerCount"].ToString() + " | Updated: " + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss tt");
             this.BeginInvoke((MethodInvoker)delegate ()
             {
                 this.Text = titleUpdate;

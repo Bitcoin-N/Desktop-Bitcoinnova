@@ -38,7 +38,7 @@ namespace TurtleWallet
         public SelectionPrompt()
         {
             InitializeComponent();
-            this.Text = "bitcoin nova Wallet";
+            this.Text = "Bitcoin Nova Wallet";
             //if(IsRunningOnMono())
             //{
             //    this.Width = this.Width + 150;

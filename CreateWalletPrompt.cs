@@ -29,7 +29,7 @@ namespace TurtleWallet
         public CreateWalletPrompt()
         {
             InitializeComponent();
-            this.Text = "bitcoin nova Wallet";
+            this.Text = "Bitcoin Nova Wallet";
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)

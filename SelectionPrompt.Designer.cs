@@ -210,7 +210,7 @@ namespace TurtleWallet
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "SelectionPrompt";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Bitcoin Nova Wallet";
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

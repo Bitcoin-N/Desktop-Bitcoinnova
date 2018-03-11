@@ -255,7 +255,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "passwordPrompt";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Bitcoin Nova Wallet";
             this.createMainPanel.ResumeLayout(false);
             this.createMainTable.ResumeLayout(false);
             this.passwordConfirmTable.ResumeLayout(false);

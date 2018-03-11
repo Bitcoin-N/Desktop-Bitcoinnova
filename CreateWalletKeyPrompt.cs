@@ -19,7 +19,7 @@ namespace TurtleWallet
         {
             InitializeComponent();
             KeysTextbox.Text = keyOutput;
-            this.Text = "bitcoin nova Wallet";
+            this.Text = "Bitcoin Nova Wallet";
         }
 
         private void CreateWalletButton_Click(object sender, EventArgs e)

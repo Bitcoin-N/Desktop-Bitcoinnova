@@ -337,6 +337,7 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(102, 20);
             this.panel4.TabIndex = 11;
+            this.panel4.Visible = false;
             // 
             // versionLabel
             // 
@@ -360,6 +361,7 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(65, 20);
             this.panel5.TabIndex = 12;
+            this.panel5.Visible = false;
             // 
             // verLabel
             // 
@@ -533,7 +535,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(173, 20);
             this.label1.TabIndex = 7;
-            this.label1.Text = "bitcoin nova Wallet";
+            this.label1.Text = "Bitcoin Nova Wallet";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel4
@@ -903,7 +905,7 @@
             this.label7.Location = new System.Drawing.Point(0, 0);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 8, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(34, 15);
+            this.label7.Size = new System.Drawing.Size(30, 15);
             this.label7.TabIndex = 9;
             this.label7.Text = "BTN";
             // 
@@ -970,7 +972,7 @@
             this.label6.Location = new System.Drawing.Point(0, 0);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 8, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(34, 15);
+            this.label6.Size = new System.Drawing.Size(30, 15);
             this.label6.TabIndex = 8;
             this.label6.Text = "BTN";
             // 
@@ -993,7 +995,7 @@
             this.feeComboBox.ForeColor = System.Drawing.Color.White;
             this.feeComboBox.FormattingEnabled = true;
             this.feeComboBox.Items.AddRange(new object[] {
-            ".1% (Tiny)",
+            ".1% (Very Low)",
             ".5% (Low)",
             "1% (Medium)",
             "3% (High)"});
@@ -2016,7 +2018,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "wallet";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "bitcoin nova Wallet";
+            this.Text = "Bitcoin Nova Wallet";
             this.Load += new System.EventHandler(this.Wallet_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
