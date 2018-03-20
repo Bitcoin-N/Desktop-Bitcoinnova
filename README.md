@@ -1,3 +1,5 @@
+<img src="http://pool.bitcoinn.biz/bitcoin-nova.png">
+
 # bitcoin nova Wallet .NET
 
 ![Wallet Image](./tw_gh.png)
